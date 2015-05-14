@@ -98,7 +98,7 @@ namespace hpp {
 
         /// Return the number of times a observation has recorded. It is the
         /// total number of observations.
-        unsigned int numberOfObservations () const
+        std::size_t numberOfObservations () const
         {
           return counts_;
         }
@@ -141,7 +141,7 @@ namespace hpp {
       private:
         Container bins_;
 
-        unsigned int counts_;
+        std::size_t counts_;
     };
 
     template < typename T >

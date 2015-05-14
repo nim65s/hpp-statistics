@@ -39,12 +39,12 @@ int test1 ()
   std::vector < Proba_t > p = dd.probabilities ();
 
   for (size_t i = 0; i < p.size (); i++)
-    if (p[i] - (double)(weight[i] / (double)total_weight) > DBL_EPSILON
-        || - p[i] + (double)(weight[i] / (double)total_weight) > DBL_EPSILON) {
+    if (p[i] - ((double) weight[i] / (double)total_weight) > DBL_EPSILON
+        || - p[i] + ((double)weight[i] / (double)total_weight) > DBL_EPSILON) {
       std::cout << "p[" << i << "] = " << p[i] << std::endl
         << "weight[" << i << "] = " << weight[i] << std::endl
         << "Total weight = " << total_weight << std::endl
-        << "Difference = " << p[i] - (double)(weight[i] / (double)total_weight) << std::endl;
+        << "Difference = " << p[i] - ((double)weight[i] / (double)total_weight) << std::endl;
       return EXIT_FAILURE;
     }
 
@@ -79,12 +79,12 @@ int test2 ()
   std::vector < Proba_t > p = dd.probabilities ();
 
   for (size_t i = 0; i < p.size (); i++)
-    if (p[i] - (double)(weight[i] / (double)total_weight) > DBL_EPSILON
-        || - p[i] + (double)(weight[i] / (double)total_weight) > DBL_EPSILON) {
+    if (p[i] - ((double)weight[i] / (double)total_weight) > DBL_EPSILON
+        || - p[i] + ((double)weight[i] / (double)total_weight) > DBL_EPSILON) {
       std::cout << "p[" << i << "] = " << p[i] << std::endl
         << "weight[" << i << "] = " << weight[i] << std::endl
         << "Total weight = " << total_weight << std::endl
-        << "Difference = " << p[i] - (double)(weight[i] / (double)total_weight) << std::endl;
+        << "Difference = " << p[i] - ((double)weight[i] / (double)total_weight) << std::endl;
       return EXIT_FAILURE;
     }
 
@@ -109,7 +109,7 @@ int test2 ()
 
 int main () {
   /* initialize random seed: */
-  srand (time(NULL));
+  srand ((unsigned int)time(NULL));
 
   std::cout.precision(15);
 

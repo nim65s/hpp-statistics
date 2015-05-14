@@ -60,7 +60,7 @@ class TestStatistics : public Statistics <TestBin> {
 
 int main ()
 {
-  srand (time(NULL));
+  srand ((unsigned int)time(NULL));
 
   TestStatistics t;
   double *check = new double [100];
