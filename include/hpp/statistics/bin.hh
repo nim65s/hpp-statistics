@@ -96,13 +96,19 @@ namespace hpp {
         ///        returns the frequency of the result.
         virtual Proba_t relativeFreq (const T& bin) const;
 
-        /// Return the number of times a observation has recorded. It is the
+        /// Return the number of times an observation has recorded. It is the
         /// total number of observations.
         std::size_t numberOfObservations () const
         {
           return counts_;
         }
-        
+
+        /// Return the number of bins.
+        unsigned int numberOfBins () const
+        {
+          return bins_.size ();
+        }
+
         /// Put the results in a stream.
         virtual std::ostream& print (std::ostream& os) const;
 
