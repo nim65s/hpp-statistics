@@ -30,7 +30,7 @@ namespace hpp {
       class DiscreteDistribution 
       {
         public:
-          typedef unsigned int Weight_t;
+          typedef std::size_t Weight_t;
           typedef typename std::pair < Weight_t, Value_t> ProbaTPair;
           typedef typename std::vector < ProbaTPair >::iterator iterator;
           typedef typename std::vector < ProbaTPair >::const_iterator const_iterator;
@@ -101,7 +101,7 @@ namespace hpp {
           std::vector < Proba_t > probabilities () const {
             if (values_.empty ()) return std::vector < Proba_t > (0);
             std::vector < Proba_t > proba (values_.size());
-            Proba_t total = cumulative_weights_.back();
+            Proba_t total = (double)cumulative_weights_.back();
             for (size_t i = 0; i < values_.size (); i++)
               proba[i] = values_[i].first / total;
             return proba;

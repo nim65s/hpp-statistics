@@ -27,14 +27,14 @@ using namespace hpp;
 int main ()
 {
   /* initialize random seed: */
-    srand (static_cast<unsigned int> (time(NULL)));
+  srand ((unsigned int)time(NULL));
 
   using namespace hpp::statistics;
   SuccessStatistics ss;
-  unsigned int counter[3];
+  std::size_t counter[3];
   counter[0]=0; counter[1]=0; counter[2]=0;
   for (int i = 0; i < 100; i++) {
-    unsigned int nb = rand() % 3;
+    std::size_t nb = rand() % 3;
     counter[nb]++;
     switch (nb) {
       case 0:

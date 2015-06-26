@@ -73,10 +73,10 @@ namespace hpp {
         ///       to define a new reason.
         class Reason {
           public:
-            unsigned int id;
+            std::size_t id;
             std::string what;
           private:
-            Reason (unsigned int a_id, std::string a_what) :
+            Reason (std::size_t a_id, std::string a_what) :
               id (a_id), what (a_what) {}
             friend Reason SuccessBin::createReason (const std::string&);
         };
@@ -88,7 +88,7 @@ namespace hpp {
 
         /// The reason for 'success'.
         const static Reason REASON_SUCCESS;
-        static unsigned int reasonID_last;
+        static std::size_t reasonID_last;
 
         std::ostream& printValue (std::ostream& os) const;
     };
