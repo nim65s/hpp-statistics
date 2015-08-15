@@ -103,7 +103,7 @@ namespace hpp {
             std::vector < Proba_t > proba (values_.size());
             Proba_t total = (double)cumulative_weights_.back();
             for (size_t i = 0; i < values_.size (); i++)
-              proba[i] = values_[i].first / total;
+              proba[i] = (Proba_t)values_[i].first / total;
             return proba;
           }
 
