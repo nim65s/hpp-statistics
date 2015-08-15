@@ -70,7 +70,7 @@ namespace hpp {
         /// The number of occurence.
         size_t freq_;
     };
-    
+
     std::ostream& operator<< (std::ostream& os, const hpp::statistics::Bin& b);
 
     /// Template class to do statistics.

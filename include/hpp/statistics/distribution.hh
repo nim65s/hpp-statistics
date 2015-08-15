@@ -27,7 +27,7 @@
 namespace hpp {
   namespace statistics {
     template < typename Value_t >
-      class DiscreteDistribution 
+      class DiscreteDistribution
       {
         public:
           typedef std::size_t Weight_t;
@@ -117,16 +117,16 @@ namespace hpp {
           /// Iterate on the values.
           /// \{
           iterator begin () {
-            return values_.begin (); 
+            return values_.begin ();
           }
           const_iterator begin () const {
-            return values_.begin (); 
+            return values_.begin ();
           }
           iterator end () {
-            return values_.end (); 
+            return values_.end ();
           }
           const_iterator end () const {
-            return values_.end (); 
+            return values_.end ();
           }
           /// \}
         private:
