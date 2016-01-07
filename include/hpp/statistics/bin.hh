@@ -129,6 +129,12 @@ namespace hpp {
           return bins_.end();
         }
 
+        /// Remove all element
+        void clear ()
+        {
+          bins_.clear();
+        }
+
       protected:
         /// Constructor
         Statistics();
