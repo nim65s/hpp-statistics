@@ -36,22 +36,12 @@ namespace hpp {
         reason_ = REASON_SUCCESS;
     }
 
-    bool SuccessBin::isSuccess () const
-    {
-      return success_;
-    }
-
     std::ostream& SuccessBin::printValue (std::ostream& os) const
     {
       os << "Event ";
       if (success_) os << "'Success'";
       else          os << "'Failure': " << reason_.what;
       return os;
-    }
-
-    const SuccessBin::Reason& SuccessBin::reason () const
-    {
-      return reason_;
     }
 
     bool SuccessBin::operator == (const SuccessBin& other) const
@@ -70,6 +60,10 @@ namespace hpp {
     void SuccessStatistics::addFailure (const SuccessBin::Reason& r)
     {
       insert (SuccessBin (false, r));
+#ifdef HPP_DEBUG
+      if (logRatio * nbSuccess () < numberOfObservations())
+        hppDout (info, *this);
+#endif
     }
 
     void SuccessStatistics::addSuccess ()

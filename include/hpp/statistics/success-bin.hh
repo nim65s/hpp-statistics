@@ -119,6 +119,11 @@ namespace hpp {
 
         /// Count the number of a particular failure.
         std::size_t nbFailure (const SuccessBin::Reason& r) const;
+
+#ifdef HPP_DEBUG
+        /// If nbSuccess() * logRatio < numberOfObservations(), write to log.
+        float logRatio;
+#endif
     };
   } // namespace statistics
 } // namespace hpp
