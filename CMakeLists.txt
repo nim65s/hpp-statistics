@@ -43,6 +43,8 @@ SET (${PROJECT_NAME}_HEADERS
 # Add dependency toward hpp-model library in pkg-config file.
 PKG_CONFIG_APPEND_LIBS("hpp-statistics")
 
+ADD_REQUIRED_DEPENDENCY("hpp-util")
+
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(tests)
 

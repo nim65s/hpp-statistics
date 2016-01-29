@@ -21,6 +21,8 @@
 # include <iostream>
 # include <set>
 
+# include <hpp/util/debug.hh>
+
 # include "hpp/statistics/config.hh"
 # include "hpp/statistics/bin.hh"
 # include "hpp/statistics/fwd.hh"
@@ -36,50 +38,65 @@ namespace hpp {
     class HPP_STATISTICS_DLLAPI SuccessBin : public Bin
     {
       public:
-        class Reason;
+        /// In case of failure, you can provide a reason.
+        /// Use macro DEFINE_REASON_FAILURE (REASON_NAME, Reason string)
+        ///       to define a new reason.
+        struct Reason {
+          std::size_t id;
+          std::string what;
+          Reason (std::size_t a_id, std::string a_what) :
+            id (a_id), what (a_what) {}
+        };
 
         /// The default reason for 'failure'.
         const static Reason REASON_UNKNOWN;
 
         /// Constructor
-        SuccessBin (const bool success, const Reason& r = REASON_UNKNOWN);
+        SuccessBin (const bool success, const Reason& r = REASON_UNKNOWN) :
+          Bin(), success_ (success), reason_(r)
+        {
+          if (success_)
+            reason_ = REASON_SUCCESS;
+        }
 
         /// Value of the bin.
         /// \return True is it counts "success", False otherwise.
-        bool isSuccess () const;
+        inline bool isSuccess () const
+        {
+          return success_;
+        }
 
         /// If this bin represents 'failure', returns the reason.
-        const Reason& reason () const;
+        inline const Reason& reason () const
+        {
+          return reason_;
+        }
 
         /// If this bin represents 'failure', returns the reason as a string.
-        const std::string& reasonString () const;
+        inline const std::string& reasonString () const;
 
         /// Check for equality.
         /// \return True if both are 'success' or if they are both 'failure'
         /// with the same Reason.
-        bool operator == (const SuccessBin& other) const;
+        inline bool operator == (const SuccessBin& other) const
+        {
+          return reason_.id == other.reason().id;
+        }
 
         /// Comparison
         /// \return the comparison of their reason id.
         /// 'success' has a reason id of INT_MIN.
-        bool operator < (const SuccessBin& other) const;
+        inline bool operator < (const SuccessBin& other) const
+        {
+          return reason_.id < other.reason ().id;
+        }
 
         /// Create a new Reason
         /// \param what The text associated with the reason.
-        static Reason createReason (const std::string& what);
-
-        /// In case of failure, you can provide a reason.
-        /// Use macro DEFINE_REASON_FAILURE (REASON_NAME, Reason string)
-        ///       to define a new reason.
-        class Reason {
-          public:
-            std::size_t id;
-            std::string what;
-          private:
-            Reason (std::size_t a_id, std::string a_what) :
-              id (a_id), what (a_what) {}
-            friend Reason SuccessBin::createReason (const std::string&);
-        };
+        static Reason createReason (const std::string& what)
+        {
+          return Reason (reasonID_last++, what);
+        }
 
       private:
         bool success_;
@@ -90,7 +107,13 @@ namespace hpp {
         const static Reason REASON_SUCCESS;
         static std::size_t reasonID_last;
 
-        std::ostream& printValue (std::ostream& os) const;
+        inline std::ostream& printValue (std::ostream& os) const
+        {
+          os << "Event ";
+          if (success_) os << "'Success'";
+          else          os << "'Failure': " << reason_.what;
+          return os;
+        }
     };
 
     class HPP_STATISTICS_DLLAPI SuccessStatistics :
@@ -100,30 +123,52 @@ namespace hpp {
         typedef Statistics <SuccessBin> Parent;
 
         /// Constructor
-        SuccessStatistics ();
+        SuccessStatistics (const std::string name = "",
+            const std::size_t& logRatio = 2)
+          : name_ (name), logRatio_ (logRatio)
+        {}
 
         /// Add a 'success'
-        void addSuccess ();
+        void addSuccess ()
+        {
+          insert (SuccessBin (true));
+        }
 
         /// Add a 'failure'
         /// \param r the reason of the 'failure'
         /// \note Use macro DEFINE_REASON_FAILURE (REASON_NAME, 'Reason details')
         ///       to define a new reason.
-        void addFailure (const SuccessBin::Reason& r = SuccessBin::REASON_UNKNOWN);
+        void addFailure (const SuccessBin::Reason& r = SuccessBin::REASON_UNKNOWN)
+        {
+          insert (SuccessBin (false, r));
+#ifdef HPP_DEBUG
+          if (logRatio_ * nbSuccess () < numberOfObservations())
+            hppDout (info, "Success statistics " << name_ << ":\n" << *this);
+#endif
+        }
 
         /// Count the number of success.
-        std::size_t nbSuccess () const;
+        std::size_t nbSuccess () const
+        {
+          return freq (SuccessBin(true));
+        }
 
         /// Count the number of failure, in total.
-        std::size_t nbFailure () const;
+        std::size_t nbFailure () const
+        {
+          return numberOfObservations() - nbSuccess();
+        }
 
         /// Count the number of a particular failure.
-        std::size_t nbFailure (const SuccessBin::Reason& r) const;
+        std::size_t nbFailure (const SuccessBin::Reason& r) const
+        {
+          return freq (SuccessBin (false, r));
+        }
 
-#ifdef HPP_DEBUG
+        const std::string name_;
+
         /// If nbSuccess() * logRatio < numberOfObservations(), write to log.
-        float logRatio;
-#endif
+        const std::size_t logRatio_;
     };
   } // namespace statistics
 } // namespace hpp
