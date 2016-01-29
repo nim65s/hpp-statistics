@@ -142,9 +142,16 @@ namespace hpp {
         {
           insert (SuccessBin (false, r));
 #ifdef HPP_DEBUG
-          if (logRatio_ * nbSuccess () < numberOfObservations())
-            hppDout (info, "Success statistics " << name_ << ":\n" << *this);
+          isLowRatio (true);
 #endif
+        }
+
+        inline bool isLowRatio (const bool autoPrint = false) const
+        {
+          bool lowRatio = (logRatio_ * nbSuccess () < numberOfObservations());
+          if (autoPrint && lowRatio)
+            hppDout (info, "Success statistics " << name_ << ":\n" << *this);
+          return lowRatio;
         }
 
         /// Count the number of success.
