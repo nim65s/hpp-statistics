@@ -56,7 +56,10 @@ namespace hpp {
         }
 
         /// Print the bin.
-        virtual std::ostream& print (std::ostream& os) const;
+        virtual std::ostream& print (std::ostream& os) const
+        {
+          return printValue (os << freq () << " - ");
+        }
 
         /// Print the inner value of the bin.
         virtual std::ostream& printValue (std::ostream& os) const = 0;
@@ -70,7 +73,10 @@ namespace hpp {
         size_t freq_;
     };
 
-    std::ostream& operator<< (std::ostream& os, const hpp::statistics::Bin& b);
+    inline std::ostream& operator<< (std::ostream& os, const hpp::statistics::Bin& b)
+    {
+      return b.print (os);
+    }
 
     /// Template class to do statistics.
     /// You should derivate class Bin and construct a class
