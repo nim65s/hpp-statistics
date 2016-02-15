@@ -128,6 +128,11 @@ namespace hpp {
           : name_ (name), logRatio_ (logRatio)
         {}
 
+        /// Copy Constructor
+        SuccessStatistics (const SuccessStatistics& other)
+          : name_ (other.name_), logRatio_ (other.logRatio_)
+        {}
+
         /// Add a 'success'
         void addSuccess ()
         {
@@ -150,7 +155,7 @@ namespace hpp {
         {
           bool lowRatio = (logRatio_ * nbSuccess () < numberOfObservations());
           if (autoPrint && lowRatio)
-            hppDout (info, "Success statistics " << name_ << ":\n" << *this);
+            hppDout (info, name_ << ":\n" << *this);
           return lowRatio;
         }
 
@@ -172,10 +177,10 @@ namespace hpp {
           return freq (SuccessBin (false, r));
         }
 
-        const std::string name_;
+        std::string name_;
 
         /// If nbSuccess() * logRatio < numberOfObservations(), write to log.
-        const std::size_t logRatio_;
+        std::size_t logRatio_;
     };
   } // namespace statistics
 } // namespace hpp
