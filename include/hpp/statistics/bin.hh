@@ -36,21 +36,21 @@ namespace hpp {
     {
       public:
         /// Return the number of element in the bin.
-        size_t freq () const
+        const std::size_t& freq () const
         {
           return freq_;
         }
 
         /// Add an occurence
         /// \return The frequency after increment;
-        size_t operator ++()
+        std::size_t operator ++()
         {
           return ++freq_;
         }
 
         /// Add an occurence
         /// \return The frequency before increment;
-        size_t operator ++(int)
+        std::size_t operator ++(int)
         {
           return freq_++;
         }
@@ -70,7 +70,7 @@ namespace hpp {
 
       private:
         /// The number of occurence.
-        size_t freq_;
+        std::size_t freq_;
     };
 
     inline std::ostream& operator<< (std::ostream& os, const hpp::statistics::Bin& b)
@@ -93,7 +93,7 @@ namespace hpp {
         /// \param bin a Bin for which only the value is useful.
         /// \note  It searches for the equivalent Bin is the set and
         ///        returns the frequency of the result.
-        virtual size_t freq (const T& bin) const;
+        virtual std::size_t freq (const T& bin) const;
 
         /// Return the relative frequency of a Bin.
         /// \param bin a Bin for which only the value is useful.

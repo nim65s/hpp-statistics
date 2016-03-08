@@ -20,7 +20,6 @@
 SET(LIBRARY_NAME ${PROJECT_NAME})
 
 ADD_LIBRARY(${LIBRARY_NAME} SHARED
-  bin.cc
   success-bin.cc
 )
 
