@@ -14,9 +14,8 @@
 // received a copy of the GNU Lesser General Public License along with
 // hpp-statistics. If not, see <http://www.gnu.org/licenses/>.
 
-
-#ifndef HPP_STATISTICS_HH
-# define HPP_STATISTICS_HH
+#ifndef HPP_STATISTICS_BIN_HH
+# define HPP_STATISTICS_BIN_HH
 
 # include <ostream>
 # include <list>
@@ -128,6 +127,12 @@ namespace hpp {
         const_iterator end() const
         {
           return bins_.end();
+        }
+
+        /// Remove all element
+        void clear ()
+        {
+          bins_.clear();
         }
 
       protected:
@@ -258,4 +263,4 @@ namespace hpp {
   } // namespace statistics
 } // namespace hpp
 
-#endif // HPP_STATISTICS_HH
+#endif // HPP_STATISTICS_BIN_HH
