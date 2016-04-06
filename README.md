@@ -1,5 +1,7 @@
 # hpp-statistics
 
+[![Build Status](https://travis-ci.org/humanoid-path-planner/hpp-statistics.svg?branch=master)](https://travis-ci.org/humanoid-path-planner/hpp-statistics)
+
 This package is part of the [HPP] software and provides a few tools for basic statistics.
 
 ### Version

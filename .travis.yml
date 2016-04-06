@@ -1,0 +1,34 @@
+language: cpp
+sudo: required
+dist: trusty
+branches:
+  only:
+  - master
+  - devel
+compiler:
+- gcc
+addons:
+  apt:
+    packages:
+      - g++
+      - cmake
+      - libboost-dev
+      - libboost-filesystem-dev
+      - libboost-system-dev
+      - git
+      - flex
+      - bison
+      - asciidoc
+      - autoconf
+      - source-highlight
+      - doxygen
+      - libtinyxml-dev
+      - libltdl-dev
+      - liblog4cxx10-dev
+      - python2.7-dev
+      - doxygen-latex
+before_install:
+- git submodule update --init --recursive
+
+script: ./.travis/build
+# after_script: ./.travis/run
