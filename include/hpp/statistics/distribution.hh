@@ -107,6 +107,15 @@ namespace hpp {
             return proba;
           }
 
+          /// Return the values.
+          std::vector < Value_t > values () const {
+            if (values_.empty ()) return std::vector < Value_t > (0);
+            std::vector < Value_t > v (values_.size());
+            for (size_t i = 0; i < values_.size (); i++)
+              v[i] = values_[i].second;
+            return v;
+          }
+
           /// Return the total weight.
           Weight_t totalWeight () const {
             if (cumulative_weights_.empty ()) return 0;
