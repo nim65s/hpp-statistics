@@ -40,7 +40,7 @@ SET (${PROJECT_NAME}_HEADERS
   include/hpp/statistics/distribution.hh
   )
 
-ADD_REQUIRED_DEPENDENCY("hpp-util")
+ADD_REQUIRED_DEPENDENCY("hpp-util >= 3.2")
 
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(tests)
