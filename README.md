@@ -1,6 +1,8 @@
 # hpp-statistics
 
-[![Build Status](https://travis-ci.org/humanoid-path-planner/hpp-statistics.svg?branch=master)](https://travis-ci.org/humanoid-path-planner/hpp-statistics)
+[![Building Status](https://travis-ci.org/humanoid-path-planner/hpp-statistics.svg?branch=master)](https://travis-ci.org/humanoid-path-planner/hpp-statistics)
+[![Pipeline status](https://gepgitlab.laas.fr/humanoid-path-planner/hpp-statistics/badges/master/pipeline.svg)](https://gepgitlab.laas.fr/humanoid-path-planner/hpp-statistics/commits/master)
+[![Coverage report](https://gepgitlab.laas.fr/humanoid-path-planner/hpp-statistics/badges/master/coverage.svg?job=doc-coverage)](http://projects.laas.fr/gepetto/doc/humanoid-path-planner/hpp-statistics/master/coverage/)
 
 This package is part of the [HPP] software and provides a few tools for basic statistics.
 
