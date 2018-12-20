@@ -20,12 +20,13 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
 INCLUDE(cmake/base.cmake)
+INCLUDE(cmake/hpp.cmake)
 
 SET(PROJECT_NAME hpp-statistics)
 SET(PROJECT_URL "")
 SET(PROJECT_DESCRIPTION "Classes for doing statistics.")
 
-SETUP_PROJECT()
+SETUP_HPP_PROJECT()
 
 # Activate hpp-util logging if requested
 SET (HPP_DEBUG FALSE CACHE BOOL "trigger hpp-util debug output")
@@ -48,4 +49,4 @@ ADD_SUBDIRECTORY(tests)
 # Add dependency toward hpp-statistics library in pkg-config file.
 PKG_CONFIG_APPEND_LIBS("hpp-statistics")
 
-SETUP_PROJECT_FINALIZE()
+SETUP_HPP_PROJECT_FINALIZE()
