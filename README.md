@@ -11,18 +11,18 @@ This package is part of the [HPP] software and provides a few tools for basic st
 
 ### Dependencies
 
-[hpp-statistics] has no dependency.
+[hpp-statistics] depends on [hpp-util].
 
 ### Installation
 
 Make sure you have installed all the dependency.
 
 ```sh
-$ git clone https://github.com/billx09/hpp-statistics
-$ cd hpp-statistics
-$ mkdir build && cd build
-$ cmake ..
-$ make install
+git clone --recursive https://github.com/humanoid-path-planner/hpp-statistics
+cd hpp-statistics
+mkdir build && cd build
+cmake ..
+make install
 ```
 
 ### Todo's
