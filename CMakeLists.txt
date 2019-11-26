@@ -17,16 +17,15 @@
 # hpp-statistics  If not, see
 # <http://www.gnu.org/licenses/>.
 
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
-
-INCLUDE(cmake/base.cmake)
-INCLUDE(cmake/hpp.cmake)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 SET(PROJECT_NAME hpp-statistics)
-SET(PROJECT_URL "")
 SET(PROJECT_DESCRIPTION "Classes for doing statistics.")
 
-SETUP_HPP_PROJECT()
+INCLUDE(cmake/hpp.cmake)
+
+COMPUTE_PROJECT_ARGS(PROJECT_ARGS LANGUAGES CXX)
+PROJECT(${PROJECT_NAME} ${PROJECT_ARGS})
 
 # Activate hpp-util logging if requested
 SET (HPP_DEBUG FALSE CACHE BOOL "trigger hpp-util debug output")
@@ -48,5 +47,3 @@ ADD_SUBDIRECTORY(tests)
 
 # Add dependency toward hpp-statistics library in pkg-config file.
 PKG_CONFIG_APPEND_LIBS("hpp-statistics")
-
-SETUP_HPP_PROJECT_FINALIZE()
