@@ -23,20 +23,11 @@
 # This macro will create a binary from `NAME.cc', link it against
 # Boost and add it to the test suite.
 #
-MACRO(ADD_TESTCASE NAME GENERATED)
-  IF (${GENERATED} STREQUAL TRUE)
-    ADD_EXECUTABLE(${NAME} ${CMAKE_CURRENT_BINARY_DIR}/${NAME}.cc)
-  ELSE()
-    ADD_EXECUTABLE(${NAME} ${NAME}.cc)
-  ENDIF()
-  ADD_TEST(${NAME} ${RUNTIME_OUTPUT_DIRECTORY}/${NAME})
-
-  # Link against Boost and project library.
+MACRO(ADD_TESTCASE NAME)
+  ADD_UNIT_TEST(${NAME} ${NAME}.cc)
   TARGET_LINK_LIBRARIES(${NAME} ${PROJECT_NAME})
-  PKG_CONFIG_USE_DEPENDENCY(${NAME} "hpp-util")
-
 ENDMACRO(ADD_TESTCASE)
 
-ADD_TESTCASE (test-successstatistics FALSE)
-ADD_TESTCASE (test-distribution FALSE)
-ADD_TESTCASE (test-statistics FALSE)
+ADD_TESTCASE(test-successstatistics)
+ADD_TESTCASE(test-distribution)
+ADD_TESTCASE(test-statistics)

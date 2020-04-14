@@ -1,6 +1,6 @@
 #
-# Copyright (c) 2014 CNRS
-# Authors: Joseph Mirabel
+# Copyright (c) 2014, 2020 CNRS
+# Authors: Joseph Mirabel, Guilhem Saurel
 #
 #
 # This file is part of hpp-statistics
@@ -17,10 +17,12 @@
 # hpp-statistics  If not, see
 # <http://www.gnu.org/licenses/>.
 
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.1)
 
 SET(PROJECT_NAME hpp-statistics)
 SET(PROJECT_DESCRIPTION "Classes for doing statistics.")
+
+SET(PROJECT_USE_CMAKE_EXPORT TRUE)
 
 INCLUDE(cmake/hpp.cmake)
 
@@ -33,16 +35,26 @@ IF (HPP_DEBUG)
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DHPP_DEBUG")
 ENDIF()
 
-SET (${PROJECT_NAME}_HEADERS
+ADD_PROJECT_DEPENDENCY(hpp-util REQUIRED)
+
+SET(${PROJECT_NAME}_HEADERS
   include/hpp/statistics/fwd.hh
   include/hpp/statistics/bin.hh
   include/hpp/statistics/success-bin.hh
   include/hpp/statistics/distribution.hh
   )
 
-ADD_REQUIRED_DEPENDENCY("hpp-util >= 3.2")
+SET(${PROJECT_NAME}_SOURCES
+  src/success-bin.cc
+  )
 
-ADD_SUBDIRECTORY(src)
+ADD_LIBRARY(${PROJECT_NAME} SHARED
+  ${${PROJECT_NAME}_SOURCES} ${${PROJECT_NAME}_HEADERS})
+TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} PUBLIC $<INSTALL_INTERFACE:include>)
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} hpp-util::hpp-util)
+
+INSTALL(TARGETS ${PROJECT_NAME} EXPORT ${TARGETS_EXPORT_NAME} DESTINATION lib)
+
 ADD_SUBDIRECTORY(tests)
 
 # Add dependency toward hpp-statistics library in pkg-config file.
