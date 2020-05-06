@@ -1,0 +1,19 @@
+<?xml version='1.0'?> 
+ <package format='2'> 
+ <name>hpp-statistics</name> 
+ <version>4.9.0</version> 
+ <description>Classes for doing statistics. </description> 
+ 
+ <maintainer email='hpp@laas.fr'>Joseph Mirabel</maintainer> 
+ <license>LGPL</license> 
+ 
+ <!-- <url type='website'>https://github.com/humanoid-path-planner/hpp-statistics </url> --> 
+ 
+ <author>Joseph Mirabel</author> 
+ <author>Florent Lamiraux et al.</author> 
+ 
+ <buildtool_depend>catkin</buildtool_depend> 
+ <build_depend>hpp-util</build_depend> 
+ <exec_depend>hpp-util</exec_depend> 
+ <build_export_depend>hpp-util</build_export_depend>
+ </package>
