@@ -1,4 +1,7 @@
                                                                 -*- outline -*-
-
+New in 4.10.0
+* Add package.xml
+* Handle dependencies via cmake instead of pkg-config (cmake submodule)
+New in 4.9.0
 New in 1.1.1, 2018-05-17
 * Update cmake submodule
