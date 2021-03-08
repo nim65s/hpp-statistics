@@ -35,7 +35,7 @@ namespace hpp {
           typedef typename std::vector < ProbaTPair >::iterator iterator;
           typedef typename std::vector < ProbaTPair >::const_iterator const_iterator;
 
-          DiscreteDistribution () : values_(), cumulative_weights_() {}
+          DiscreteDistribution () = default;
 
           Value_t operator() () const {
             assert (values_.size() > 0);
