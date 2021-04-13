@@ -59,3 +59,5 @@ ADD_SUBDIRECTORY(tests)
 
 # Add dependency toward hpp-statistics library in pkg-config file.
 PKG_CONFIG_APPEND_LIBS("hpp-statistics")
+
+INSTALL(FILES package.xml DESTINATION share/${PROJECT_NAME})
