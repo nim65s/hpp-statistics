@@ -15,18 +15,20 @@
 // hpp-statistics. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef HPP_STATISTICS_SUCCESSBIN_HXX
-# define HPP_STATISTICS_SUCCESSBIN_HXX
+#define HPP_STATISTICS_SUCCESSBIN_HXX
 
-# include "hpp/statistics/success-bin.hh"
+#include "hpp/statistics/success-bin.hh"
 
-# include <limits.h>
+#include <limits.h>
 
 namespace hpp {
-  namespace statistics {
-    std::size_t SuccessBin::reasonID_last = 0;
-    const SuccessBin::Reason SuccessBin::REASON_SUCCESS = SuccessBin::createReason ("Success");
-    const SuccessBin::Reason SuccessBin::REASON_UNKNOWN = SuccessBin::createReason ("Unknown");
-  } // namespace statistics
-} // namespace hpp
+namespace statistics {
+std::size_t SuccessBin::reasonID_last = 0;
+const SuccessBin::Reason SuccessBin::REASON_SUCCESS =
+    SuccessBin::createReason("Success");
+const SuccessBin::Reason SuccessBin::REASON_UNKNOWN =
+    SuccessBin::createReason("Unknown");
+}  // namespace statistics
+}  // namespace hpp
 
-#endif // HPP_STATISTICS_SUCCESSBIN_HXX
+#endif  // HPP_STATISTICS_SUCCESSBIN_HXX
