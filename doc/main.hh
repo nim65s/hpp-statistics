@@ -15,7 +15,7 @@
 // hpp-statistics. If not, see <http://www.gnu.org/licenses/>.
 
 namespace hpp {
-  namespace statistics {
+namespace statistics {
 /**
 
   \mainpage
@@ -29,5 +29,5 @@ namespace hpp {
   \li SuccessStatistics enhances Statistics<SuccessBin>.
 
  **/
-  }
 }
+}  // namespace hpp

@@ -15,17 +15,18 @@
 // hpp-statistics. If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef HPP_STATISTICS_FWD_HH
-# define HPP_STATISTICS_FWD_HH
+#define HPP_STATISTICS_FWD_HH
 
 namespace hpp {
-  namespace statistics {
-    typedef double Proba_t;
+namespace statistics {
+typedef double Proba_t;
 
-    class Bin;
-    template < typename T > class Statistics;
-    class SuccessBin;
-    class SuccessStatistics;
-  } // namespace statistics
-} // namespace hpp
+class Bin;
+template <typename T>
+class Statistics;
+class SuccessBin;
+class SuccessStatistics;
+}  // namespace statistics
+}  // namespace hpp
 
-#endif // HPP_STATISTICS_FWD_HH
+#endif  // HPP_STATISTICS_FWD_HH

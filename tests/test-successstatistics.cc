@@ -16,47 +16,48 @@
 
 #include <stdlib.h>
 #include <time.h>
+
 #include <iostream>
 
 #include "hpp/statistics/success-bin.hh"
 
-HPP_DEFINE_REASON_FAILURE (REASON_TEST, "Fake reason for testing purpose");
+HPP_DEFINE_REASON_FAILURE(REASON_TEST, "Fake reason for testing purpose");
 
 using namespace hpp;
 
-int main ()
-{
+int main() {
   /* initialize random seed: */
-  srand ((unsigned int)time(NULL));
+  srand((unsigned int)time(NULL));
 
   using namespace hpp::statistics;
   SuccessStatistics ss;
   std::size_t counter[3];
-  counter[0]=0; counter[1]=0; counter[2]=0;
+  counter[0] = 0;
+  counter[1] = 0;
+  counter[2] = 0;
   for (int i = 0; i < 100; i++) {
     std::size_t nb = rand() % 3;
     counter[nb]++;
     switch (nb) {
       case 0:
-        ss.addSuccess ();
+        ss.addSuccess();
         break;
       case 1:
-        ss.addFailure ();
+        ss.addFailure();
         break;
       case 2:
-        ss.addFailure (REASON_TEST);
+        ss.addFailure(REASON_TEST);
         break;
     }
   }
-  if (   ss.nbSuccess () != counter[0]
-      || ss.nbFailure (SuccessBin::REASON_UNKNOWN) != counter[1]
-      || ss.nbFailure (REASON_TEST) != counter[2]) {
+  if (ss.nbSuccess() != counter[0] ||
+      ss.nbFailure(SuccessBin::REASON_UNKNOWN) != counter[1] ||
+      ss.nbFailure(REASON_TEST) != counter[2]) {
     std::cout << ss << std::endl;
     std::cout << "Real frequencies are: ( " << counter[0] << ", " << counter[1]
-      << ", " << counter [2] << ")" << std::endl;
+              << ", " << counter[2] << ")" << std::endl;
     return EXIT_FAILURE;
   }
-  if (ss.nbFailure () != counter[1] + counter[2])
-    return EXIT_FAILURE;
+  if (ss.nbFailure() != counter[1] + counter[2]) return EXIT_FAILURE;
   return EXIT_SUCCESS;
 }
