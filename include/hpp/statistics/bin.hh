@@ -56,6 +56,7 @@ class HPP_STATISTICS_DLLAPI Bin {
  protected:
   /// Constructor
   Bin() : freq_(0) {}
+  virtual ~Bin() {}
 
  private:
   /// The number of occurence.
