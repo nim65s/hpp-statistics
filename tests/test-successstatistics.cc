@@ -36,7 +36,7 @@ int main() {
   counter[1] = 0;
   counter[2] = 0;
   for (int i = 0; i < 100; i++) {
-    std::size_t nb = rand() % 3;
+    std::size_t nb = static_cast<std::size_t>(rand() % 3);
     counter[nb]++;
     switch (nb) {
       case 0:
