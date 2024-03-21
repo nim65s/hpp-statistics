@@ -1,2 +1,23 @@
+[build-system]
+build-backend = "cmeel.build"
+requires = [
+  "cmeel-boost ~= 1.83.0",
+  "cmeel[build]",
+  "hpp-util[build]"
+]
+
+[project]
+dependencies = [
+  "cmeel-boost ~= 1.83.0",
+  "hpp-util"
+]
+description = "Classes for doing statistics."
+license = "BSD-2-Clause"
+name = "hpp-statistics"
+version = "5.0.0"
+
 [tool.isort]
 profile = "black"
+
+[tool.tomlsort]
+all = true
