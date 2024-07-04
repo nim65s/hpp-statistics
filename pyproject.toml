@@ -14,7 +14,7 @@ dependencies = [
 description = "Classes for doing statistics."
 license = "BSD-2-Clause"
 name = "hpp-statistics"
-version = "5.0.0"
+version = "5.1.0"
 
 [tool.ruff]
 extend-exclude = ["cmake"]
