@@ -4,6 +4,7 @@
   inputs = {
     gepetto.url = "github:gepetto/nix";
     flake-parts.follows = "gepetto/flake-parts";
+    gazebros2nix.follows = "gepetto/gazebros2nix";
     nixpkgs.follows = "gepetto/nixpkgs";
     nix-ros-overlay.follows = "gepetto/nix-ros-overlay";
     systems.follows = "gepetto/systems";
