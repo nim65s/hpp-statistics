@@ -22,8 +22,8 @@
 # it to the test suite.
 #
 macro(ADD_TESTCASE NAME)
-  add_unit_test(${NAME} ${NAME}.cc)
-  target_link_libraries(${NAME} ${PROJECT_NAME})
+    add_unit_test(${NAME} ${NAME}.cc)
+    target_link_libraries(${NAME} ${PROJECT_NAME})
 endmacro(ADD_TESTCASE)
 
 add_testcase(test-successstatistics)
