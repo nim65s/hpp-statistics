@@ -1,0 +1,6 @@
+[hpp-statistics]
+src_deps = ["hpp-util"]
+url = "."
+
+[hpp-util]
+url = "github:humanoid-path-planner"
